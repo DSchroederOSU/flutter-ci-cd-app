@@ -20,7 +20,6 @@ workflows:
       - flutter packages pub get
       - flutter config --enable-web
       - flutter test
-      - flutter build apk --release
       - |
         # build web
         flutter build web --release
