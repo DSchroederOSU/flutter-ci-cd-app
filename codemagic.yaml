@@ -28,7 +28,7 @@ workflows:
 
         cd $FCI_BUILD_DIR/build/
         sudo pip3 install awscli --upgrade
-        aws s3 sync web/ s3://flutter-ci-cd-flutter/
+        aws s3 sync web/ s3://flutter-ci-cd-app/
 
     artifacts:
       - build/**/outputs/**/*.apk
