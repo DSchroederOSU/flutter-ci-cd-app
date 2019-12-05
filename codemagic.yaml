@@ -20,14 +20,11 @@ workflows:
       - flutter test
       - |
         # build web
-        dart tool/env.dart
         flutter build web --release
         cd build/web
         7z a -r ../web.zip ./*
         
         cd $FCI_BUILD_DIR/build/
-        ls -al
-        
         sudo pip3 install awscli --upgrade
         aws s3 sync web/ s3://flutter-ci-cd-app/
 
