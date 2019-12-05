@@ -33,6 +33,7 @@ workflows:
       - build/**/outputs/**/*.aab
       - build/**/outputs/**/mapping.txt
       - build/web.zip
+      - build/web/*
       - flutter_drive.log
 
     publishing:
