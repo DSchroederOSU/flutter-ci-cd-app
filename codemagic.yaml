@@ -30,7 +30,7 @@ workflows:
       - aws s3 sync web/ s3://flutter-ci-cd-app/
 
     artifacts:
-      - build/*.zip
+      - build/web/*.zip
 
     publishing:
       static_page:
