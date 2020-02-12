@@ -20,13 +20,13 @@ workflows:
       - flutter build web --release
       - cd build/web
         
-      - 7z a -r ./"${FCI_BRANCH}v${BUILD_NUMBER}".zip ./*
+      - 7z a -r ../"${FCI_BRANCH}v${BUILD_NUMBER}".zip ./*
       - cd $FCI_BUILD_DIR/build/
       - sudo pip3 install awscli --upgrade
       - aws s3 sync web/ s3://flutter-ci-cd-app/
 
     artifacts:
-      - build/web/*.zip
+      - build/*.zip
     publishing:
       static_page:
         subdomain: flutter-ci-cd
