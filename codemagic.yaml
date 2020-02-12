@@ -31,5 +31,7 @@ workflows:
     artifacts:
       - build/*.zip
     publishing:
+      scripts:
+       - echo $FCI_ARTIFACT_LINKS  
       static_page:
         subdomain: flutter-ci-cd
