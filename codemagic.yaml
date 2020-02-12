@@ -20,7 +20,8 @@ workflows:
       - flutter build web --release
       - cd build/web
         
-      - 7z a -r ../"${FCI_BRANCH}v${BUILD_NUMBER}".zip ./*
+      - 7z a -r ./"${FCI_BRANCH}v${BUILD_NUMBER}".zip ./*
+      - mv *.zip $FCI_BUILD_DIR/build/
       - cd $FCI_BUILD_DIR/build/
       - sudo pip3 install awscli --upgrade
       - aws s3 sync web/ s3://flutter-ci-cd-app/
