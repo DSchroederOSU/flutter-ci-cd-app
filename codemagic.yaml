@@ -27,10 +27,8 @@ workflows:
       - sudo pip3 install awscli --upgrade
       - aws s3 sync web/ s3://flutter-ci-cd-app/
 
-      - | 
-        ./buildscripts/writeArtifact.js
     artifacts:
-      - build/"${FCI_BRANCH}v${BUILD_NUMBER}".zip
+      - build/*.zip
 
     publishing:
       static_page:
