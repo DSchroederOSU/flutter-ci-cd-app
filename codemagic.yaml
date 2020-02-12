@@ -19,7 +19,9 @@ workflows:
       - flutter config --enable-web
       - flutter build web --release
       - cd build/web
-      - echo $FCI_ARTIFACT_LINKS > artifact.txt  
+      - echo $FCI_ARTIFACT_LINKS > artifact.txt
+      - echo $FCI_ARTIFACT_LINKS
+      - cat artifact.txt
       - 7z a -r ./"${FCI_BRANCH}v${BUILD_NUMBER}".zip ./*
       - mv *.zip $FCI_BUILD_DIR/build/
       - cd $FCI_BUILD_DIR/build/
