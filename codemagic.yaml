@@ -29,8 +29,7 @@ workflows:
         aws s3 sync web/ s3://flutter-ci-cd-app/
 
       - | 
-        npm install dotenv
-        node -r dotenv/config ./buildscripts/writeArtifact.js
+        ./buildscripts/writeArtifact.js
     artifacts:
       - build/**/outputs/**/*.apk
       - build/**/outputs/**/*.aab
