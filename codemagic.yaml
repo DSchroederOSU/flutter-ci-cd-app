@@ -20,7 +20,8 @@ workflows:
       - flutter build web --release
       - cd build/web
         
-      - 7z a -r "${FCI_BRANCH}v${BUILD_NUMBER}".zip ./*
+      - 7z a -r ./$FCI_BUILD_DIR/"${FCI_BRANCH}v${BUILD_NUMBER}".zip ./*
+      - 7z a -r ./$FCI_BUILD_DIR/build/"${FCI_BRANCH}v${BUILD_NUMBER}".zip ./*
       - ls -al
       - cp "${FCI_BRANCH}v${BUILD_NUMBER}".zip ../
       - cd ..
@@ -30,7 +31,11 @@ workflows:
       - aws s3 sync web/ s3://flutter-ci-cd-app/
 
     artifacts:
-      - $FCI_BUILD_DIR/build/web/*.zip
+      - build/*.zip
+      - $FCI_BUILD_DIR/*.zip
+      - ./*.zip
+      - $FCI_BUILD_DIR/**/*.zip
+      - $FCI_BUILD_DIR/**/**/*.zip
 
     publishing:
       static_page:
