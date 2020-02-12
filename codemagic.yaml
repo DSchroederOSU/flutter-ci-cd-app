@@ -22,7 +22,8 @@ workflows:
         # build web
         flutter build web --release
         cd build/web
-        7z a -r ../web.zip ./*
+        
+        7z a -r ../"${FCI_BRANCH}v${BUILD_NUMBER}".zip ./*
         
         cd $FCI_BUILD_DIR/build/
         sudo pip3 install awscli --upgrade
@@ -31,12 +32,7 @@ workflows:
       - | 
         ./buildscripts/writeArtifact.js
     artifacts:
-      - build/**/outputs/**/*.apk
-      - build/**/outputs/**/*.aab
-      - build/**/outputs/**/mapping.txt
-      - build/web.zip
-      - build/**/outputs/build/web/*
-      - flutter_drive.log
+      - build/"${FCI_BRANCH}v${BUILD_NUMBER}".zip
 
     publishing:
       static_page:
