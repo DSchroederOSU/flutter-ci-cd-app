@@ -17,17 +17,15 @@ workflows:
     scripts:
       - flutter packages pub get
       - flutter config --enable-web
-      - flutter test
-      - |
-        # build web
-        flutter build web --release
-        cd build/web
+      - flutter build web --release
+      - cd build/web
         
-        7z a -r ../"${FCI_BRANCH}v${BUILD_NUMBER}".zip ./*
-        
-        cd $FCI_BUILD_DIR/build/
-        sudo pip3 install awscli --upgrade
-        aws s3 sync web/ s3://flutter-ci-cd-app/
+      - 7z a -r ../"${FCI_BRANCH}v${BUILD_NUMBER}".zip ./*
+      - cd ..
+      - ls -al  
+      - cd $FCI_BUILD_DIR/build/
+      - sudo pip3 install awscli --upgrade
+      - aws s3 sync web/ s3://flutter-ci-cd-app/
 
       - | 
         ./buildscripts/writeArtifact.js
